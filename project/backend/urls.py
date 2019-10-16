@@ -18,6 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('this_warrior_can.urls')),
+    path('', include('frontend.urls')),
     path('admin/', admin.site.urls),
     path('account/', include('django.contrib.auth.urls')),
 ]

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'this_warrior_can',
     'rest_framework',
+    'frontend',
 ]
 
 MIDDLEWARE = [
