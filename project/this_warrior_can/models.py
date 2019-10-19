@@ -2,8 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
-# Create your models here.
+from datetime import date
 
 
 class User(AbstractUser):
@@ -15,4 +14,16 @@ class User(AbstractUser):
     birth_date = models.DateField(null=True, blank=True)
     sober_date = models.DateField(null=True, blank=True)
 
+
+class TimeSober(models.Model):
+    """
+        A way to keep track of how long its been since you did a bad habbit
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=40, blank=True)
+    sober_date = models.DateField(null=True, blank=True)
+
+    def get_time_sober(self):
+        today = date.today()
+        return (today - self.sober_date).days
 

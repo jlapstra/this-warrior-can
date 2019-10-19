@@ -1,0 +1,49 @@
+.thisIsYou {
+  text-align: center;
+  color: #84AABB;
+  font-size: 34px;
+  font-family: 'Amatic SC', cursive;
+}
+
+ul.header li {
+  display: inline;
+  list-style-type: none;
+  padding: 20px;
+  color: black;
+  font-size: 20px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+ul.header li a {
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+}
+
+.headerBar {
+  background-color: #D3E2E8;
+}
+
+ul.header {
+  display: inline-block;
+  vertical-align: top;
+  padding: 26px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: bolder;
+  font-family: 'Amatic SC', cursive;
+}
+
+li.account {
+  margin-right: 25px;
+  position: absolute;
+  right: 25px;
+  top: 50px;
+}
+
+.imgTitle {
+  display: inline-block;
+  width: 230px;
+}

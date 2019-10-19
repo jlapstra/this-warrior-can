@@ -1,23 +1,21 @@
 import React, { Component } from "react";
-import { BrowseRouter as Router, Route} from 'react-router-dom';
+import { Route, NavLink, HashRouter } from 'react-router-dom';
 import ReactDOM from "react-dom";
-import DataProvider from "./DataProvider";
-import Table from "./Table";
+import UserDashboard from './UserDashboard';
+import Img from 'react-image';
+import './App.css'
+import img from './ThisWarriorCan.png';
+import MainApp from './MainApp';
+import DataProvider from './DataProvider';
 
-//import PrivateRoute from './PrivateRoute';
-//import UserDashboard from './UserDashboard';
-//import LoginForm from './LoginForm';
 
+const App = () => {
+  return (
+    <DataProvider endpoint="api/dashboard"
+      render = { data => <MainApp data={ data }/>}/>
+  );
+};
 
-const App = () => (
-  <DataProvider endpoint="api/lead/" 
-                render={data => <Table data={data} />} />
-);
-
-//<Router>
-//  <Route path="/account/login" component={LoginForm} />
-//  <PrivateRoute path="/" component={UserDashboard} />
-//</Router>
 
 const wrapper = document.getElementById("app");
 wrapper ? ReactDOM.render(<App />, wrapper) : null;
