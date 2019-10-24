@@ -5,6 +5,11 @@
   font-family: 'Amatic SC', cursive;
 }
 
+.timeSober {
+  width: 18rem;
+  margin-top: 20px;
+}
+
 ul.header li {
   display: inline;
   list-style-type: none;

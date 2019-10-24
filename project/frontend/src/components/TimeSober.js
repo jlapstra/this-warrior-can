@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
+import Card from 'react-bootstrap/Card';
 
 
 class TimeSober extends Component {
   render() {
     return (
-      <div>
-        <h1>{this.props.data.title} Free </h1>
-        <h2>{this.props.data.time_sober} Days</h2>
-      </div>
+      <Card className="timeSober">
+        <Card.Header>Habbit Breaker</Card.Header>
+        <Card.Body>
+          <Card.Title>{ this.props.data.title } Free</Card.Title>
+          <Card.Text>
+            { this.props.data.time_sober } Days
+          </Card.Text>
+        </Card.Body>
+      </Card>
     );
   }
 }
