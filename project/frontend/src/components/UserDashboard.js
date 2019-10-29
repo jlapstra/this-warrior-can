@@ -2,21 +2,27 @@ import React, { Component } from "react";
 import DataProvider from './DataProvider';
 import UserData from './UserData';
 import TimeSober from './TimeSober';
+import Card from 'react-bootstrap/Card';
+import CardColumns from 'react-bootstrap/CardColumns';
 
 class UserDashboard extends Component {
   render() {
     return (
-      <div>
+      <CardColumns>
         <DataProvider endpoint="api/timesober"
           render = { data => <TimeSober data={ data }/>}/>
-        <div className="thisIsYou" style={{color: '#84AABB'}}>
-          <p>This is you</p>
-          <span style={{color: '#D3E2E8'}}>
-            <i className="fas fa-user-circle fa-10x"></i>
-          </span>
-          <p>And you got this</p>
-        </div>
-      </div>
+        <Card className="thisIsYou">
+          <Card.Body>
+            <Card.Text>
+              This is you
+              <span style={{color: '#D3E2E8'}}>
+                <i className="fas fa-user-circle fa-10x"></i>
+              </span>
+              And you got this
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </CardColumns>
     );
   }
 }

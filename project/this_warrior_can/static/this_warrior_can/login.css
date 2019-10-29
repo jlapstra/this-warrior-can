@@ -1,0 +1,24 @@
+.login-page {
+  margin-top: 30px;
+}
+
+.p-2 {
+  padding: 0px !important;
+}
+
+.logo {
+  width: 400px;
+}
+
+#login-form {
+  width: 400px;
+  margin: 0 auto;
+  display: table;
+  padding: 20px;
+  border-color: #D3E2E8 !important;
+  border: 3px solid;
+}
+
+#login-btn {
+  margin-top: 25px;
+}
