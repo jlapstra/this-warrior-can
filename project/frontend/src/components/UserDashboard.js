@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import DataProvider from './DataProvider';
 import UserData from './UserData';
-import TimeSober from './TimeSober';
+import SoberCard from './SoberCard';
 import Card from 'react-bootstrap/Card';
 import CardColumns from 'react-bootstrap/CardColumns';
 
@@ -10,7 +10,7 @@ class UserDashboard extends Component {
     return (
       <CardColumns>
         <DataProvider endpoint="api/timesober"
-          render = { data => <TimeSober data={ data }/>}/>
+          render = { data => <SoberCard data={ data }/>}/>
         <Card className="thisIsYou">
           <Card.Body>
             <Card.Text>
