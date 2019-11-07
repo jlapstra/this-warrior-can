@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from this_warrior_can.models import User, TimeSober
-from this_warrior_can.serializers import UserSerializer, TimeSoberSerializer
+from this_warrior_can.serializers import UserSerializer, UserSerializerSerializer, TimeSoberSerializer
 from rest_framework import generics
 from rest_framework.response import Response
 
 
-class UserView(generics.RetrieveAPIView):
+class UserViewEndpoint(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -20,6 +20,13 @@ class TimeSoberEndpoint(generics.RetrieveAPIView):
     serializer_class = TimeSoberSerializer
 
     def get(self, request):
-        queryset = TimeSober.objects.get(user_id=request.user.id)
+        try:
+            queryset = TimeSober.objects.get(user_id=request.user.id)
+        except TimeSober.DoesNotExist:
+            return Response({})
         serializer = self.serializer_class(queryset)
         return Response(serializer.data)
+
+
+class CreateUserEndpoint(generics.CreateAPIView):
+    serializer_class = UserSerializerSerializer

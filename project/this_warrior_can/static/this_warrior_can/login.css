@@ -19,6 +19,19 @@
   border: 3px solid;
 }
 
-#login-btn {
+.group-btn {
   margin-top: 25px;
+}
+
+.group-btn button {
+  width: 48%;
+  color: #D3E2E8 !important;
+}
+
+.group-btn a {
+  width: 48%;
+}
+
+#login-btn {
+  margin-right: 10px;
 }

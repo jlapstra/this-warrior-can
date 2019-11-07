@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+ASSET_PATH = './static/frontend/'
 
 # Application definition
 
@@ -72,8 +73,9 @@ TEMPLATES = [
 
 LOGIN_REDIRECT_URL = '/'
 
-WSGI_APPLICATION = 'backend.wsgi.application'
+LOGOUT_REDIRECT_URL = '/'
 
+WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
