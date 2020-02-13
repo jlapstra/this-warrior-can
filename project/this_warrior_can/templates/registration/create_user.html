@@ -8,8 +8,9 @@
       <img class="logo rounded-top mx-auto d-block" src="{% static "frontend/ThisWarriorCan.png" %}">
     </div>
     <div class="p-2">
-      <form method="post" id="login-form" class="rounded-bottom">
+      <form method="post" id="login-form" class="rounded-bottom" onsubmit="return validate()">
         {% csrf_token %}
+        <div id="errors">
         {% if error %}
             {% for e in error %}
                 <div class="alert alert-danger" role="alert">
@@ -17,6 +18,7 @@
                 </div>
             {% endfor %}
         {% endif %}
+        </div>
         <div class="form-group">
           <label for="{{ serializer.data.email.id_for_label }}">Email</label>
           <input type="email" class="form-control" id="{{ serializer.data.email.id_for_label }}" placeholder="Enter Email" name="email" required>
@@ -27,7 +29,7 @@
         </div>
         <div class="form-group">
           <label for="{{ serializer.data.password.id_for_label }}">Password</label>
-          <input type="password" class="form-control" id="{{ serializer.data.password.id_for_label }}" placeholder="Enter Password" name="password" required>
+          <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password" required>
         </div>
         <div class="form-group">
           <label for="password2">Re-enter Password</label>
@@ -49,6 +51,22 @@
           <button id="create-user-btn" class="btn btn-primary btn-lg" type="submit">Create User</button>
         </div>
       </form>
+      <script>
+          function validate() {
+              //check if password is the same as confirm password
+              var password = document.getElementById("password").value;
+              var password2 = document.getElementById("password2").value;
+              if (password != password2){
+                  var node = document.createElement("DIV");
+                  node.classList.add("alert", "alert-danger");
+                  var textnode = document.createTextNode("Passwords do not match. Please retry.");
+                  node.appendChild(textnode);
+                  document.getElementById("errors").appendChild(node);
+                  //alert here please
+                  return false;
+              }
+          }
+      </script>
     </div>
   </div>
 {% endblock %}
