@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'this_warrior_can',
     'rest_framework',
     'frontend',
+    'aloe_django',
 ]
 
 MIDDLEWARE = [
