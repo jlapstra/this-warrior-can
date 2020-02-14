@@ -40,3 +40,24 @@ def step_assert_redirect(self):
 @step('The user is found in the database')
 def step_assert_in_database(self):
     assert_true(User.objects.get(username=world.username))
+
+@step('I empty the "([^"]+)" table')
+def step_empty_table(self, model_name):
+    get_model(model_name).objects.all().delete()
+
+@step('I create the following users:')
+def step_create_users(self):
+    for user in guess_types(self.hashes):
+        User.objects.create_user(**user)
+
+@step('I create a user with the same username')
+def step_create_user_with_same_username(self):
+    world.response = world.client.post(
+        '/create_user/',
+        urlencode(world.data),
+        content_type='application/x-ww-form-urlencoded')
+
+@step('An exception is not raised')
+def step_check_for_exception(self):
+    assert_equal(world.response.status_code, 200)
+    assert_equal(User.objects.all().count(), 1)

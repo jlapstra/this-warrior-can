@@ -2,6 +2,7 @@ Feature: Login
 
     Scenario: Simple Login Page
         Given I access the url "/"
+
         Then I am redirected to the login page
 
 
