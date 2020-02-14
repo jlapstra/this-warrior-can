@@ -11,12 +11,21 @@ from this_warrior_can.serializers import UserSerializerSerializer
 def index(request):
     return render(request, 'frontend/index.html')
 
+def render_error(request, serializer, errors):
+    return render(
+        request,
+        'registration/create_user.html',
+        {
+            'serializer': serializer,
+            'error': errors
+        }
+    )
 
 def create_user(request):
     if request.method == 'GET':
         serializer = UserSerializerSerializer()
 
-        return render(request, 'registration/create_user.html',{'serializer': serializer})
+        return render(request, 'registration/create_user.html', {'serializer': serializer})
 
     elif request.method == 'POST':
         data = FormParser().parse(request)
@@ -27,9 +36,10 @@ def create_user(request):
                 messages.success(request, 'User created successfully, please log in')
                 return redirect('/account/login/')
             except IntegrityError as e:
-                return render(request, 'registration/create_user.html', {'serializer': serializer, 'error': ['Username already taken. Please try again']})
+                error = ['Username already taken. Please try again']
+                return render_error(request, serializer, error)
         else:
-            return render(request, 'registration/create_user.html',{'serializer': serializer, 'error': serializer.errors})
+            return render_error(request, serializer, serializer.errors)
 
 
 

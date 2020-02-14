@@ -11,6 +11,13 @@ from rest_framework.test import APIClient
 from this_warrior_can.models import User
 from this_warrior_can.serializers import UserSerializerSerializer
 
+
+def make_post_request():
+    return world.client.post(
+        '/create_user/',
+        urlencode(world.data),
+        content_type='application/x-www-form-urlencoded')
+
 @before.each_feature
 def before_each_feature(feature):
     world.client = APIClient()
@@ -27,10 +34,7 @@ def before_each_feature(feature):
 
 @step('I fill out all the required fields')
 def complete_form(self):
-    world.response = world.client.post(
-        '/create_user/',
-        urlencode(world.data),
-        content_type='application/x-www-form-urlencoded')
+    world.response = make_post_request()
 
 @step('I am redirected to login')
 def step_assert_redirect(self):
@@ -52,10 +56,7 @@ def step_create_users(self):
 
 @step('I create a user with the same username')
 def step_create_user_with_same_username(self):
-    world.response = world.client.post(
-        '/create_user/',
-        urlencode(world.data),
-        content_type='application/x-ww-form-urlencoded')
+    world.response = make_post_request()
 
 @step('An exception is not raised')
 def step_check_for_exception(self):
