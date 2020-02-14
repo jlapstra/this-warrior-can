@@ -16,7 +16,7 @@ def step_access_url(self):
     world.response = world.client.get('/')
 
 @step('I am redirected to the login page')
-def step_assert_redirect(self):
+def step_assert_redirect_and_next_url(self):
     assert_equal(world.response.status_code, 302)
     assert_equal(world.response.url, "/account/login/?next=/")
 
