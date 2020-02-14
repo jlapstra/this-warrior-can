@@ -20,3 +20,13 @@ Feature: Create User
         Then An exception is not raised
 
 
+    Scenario: Test invalid email
+        Given I submit an invalid email
+
+        Then No user is created
+
+
+    Scenario: Test field required
+        Given I omit first name
+
+        Then No user is created

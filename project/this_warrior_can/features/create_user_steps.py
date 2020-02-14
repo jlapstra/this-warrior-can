@@ -12,10 +12,10 @@ from this_warrior_can.models import User
 from this_warrior_can.serializers import UserSerializerSerializer
 
 
-def make_post_request():
+def make_post_request(data):
     return world.client.post(
         '/create_user/',
-        urlencode(world.data),
+        urlencode(data),
         content_type='application/x-www-form-urlencoded')
 
 @before.each_feature
@@ -34,7 +34,7 @@ def before_each_feature(feature):
 
 @step('I fill out all the required fields')
 def complete_form(self):
-    world.response = make_post_request()
+    world.response = make_post_request(world.data)
 
 @step('I am redirected to login')
 def step_assert_redirect(self):
@@ -56,9 +56,26 @@ def step_create_users(self):
 
 @step('I create a user with the same username')
 def step_create_user_with_same_username(self):
-    world.response = make_post_request()
+    world.response = make_post_request(world.data)
 
 @step('An exception is not raised')
 def step_check_for_exception(self):
     assert_equal(world.response.status_code, 200)
     assert_equal(User.objects.all().count(), 1)
+
+@step('I submit an invalid email')
+def step_submit_invalid_email(self):
+    invalid_data = world.data
+    invalid_data['email'] = 'notvalid'
+    world.response = make_post_request(invalid_data)
+
+@step('I omit first name')
+def step_omit_required_field(self):
+    invalid_data = world.data
+    del invalid_data['first_name']
+    world.response = make_post_request(invalid_data)
+
+@step('No user is created')
+def step_check_not_created(self):
+    assert_equal(world.response.status_code, 200)
+    assert_equal(User.objects.all().count(), 0)
