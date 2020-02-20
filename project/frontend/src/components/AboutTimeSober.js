@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 class AboutTimeSober extends Component {
   render() {
     return (
-      <Card className="timeSober">
+      <Card id="timeSober">
         <Card.Header>Habit Breaker</Card.Header>
         <Card.Body>
           <Card.Title>Have a habit you hope to stop?</Card.Title>
