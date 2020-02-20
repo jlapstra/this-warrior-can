@@ -44,3 +44,14 @@ class TimeSoberSerializer(serializers.ModelSerializer):
 
     def get_time_sober(self, obj):
         return obj.get_time_sober()
+
+    def create(self, validated_data):
+        user = self.context.get('request').user
+        timesober = TimeSober.objects.create(
+                        user=user,
+                        title=validated_data['title'],
+                        sober_date=validated_data['sober_date']
+                    )
+        timesober.save()
+        return timesober
+

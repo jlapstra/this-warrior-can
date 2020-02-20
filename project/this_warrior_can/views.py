@@ -15,16 +15,19 @@ class UserViewEndpoint(generics.RetrieveAPIView):
         return Response(serializer.data)
 
 
-class TimeSoberEndpoint(generics.RetrieveAPIView):
+class TimeSoberEndpoint(generics.ListCreateAPIView):
     queryset = TimeSober.objects.all()
     serializer_class = TimeSoberSerializer
 
+    def get_serializer_context(self):
+        return {'request': self.request}
+
     def get(self, request):
         try:
-            queryset = TimeSober.objects.get(user_id=request.user.id)
+            queryset = TimeSober.objects.filter(user_id=request.user.id)
         except TimeSober.DoesNotExist:
             return Response({})
-        serializer = self.serializer_class(queryset)
+        serializer = self.serializer_class(queryset, many=True)
         return Response(serializer.data)
 
 
