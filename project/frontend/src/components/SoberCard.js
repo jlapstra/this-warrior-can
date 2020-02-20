@@ -8,9 +8,12 @@ import AboutTimeSober from './AboutTimeSober';
 class SoberCard extends Component {
   render() {
     if (Object.keys(this.props.data).length == 0) {
-      return <AboutTimeSober />
+      return <AboutTimeSober />;
     }
-    return <TimeSober data={ this.props.data } />
+    var timeSoberList = this.props.data.map(function(data, i) {
+      return <TimeSober key={ i } data={ data } />;
+    });
+    return <div>{ timeSoberList }</div>;
   }
 }
 
