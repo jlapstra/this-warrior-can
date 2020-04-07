@@ -43,9 +43,11 @@ class TimeSoberSerializer(serializers.ModelSerializer):
         fields = ['title', 'sober_date', 'time_sober']
 
     def get_time_sober(self, obj):
-        return obj.get_time_sober()
+        if isinstance(obj, TimeSober):
+            return obj.get_time_sober()
 
     def create(self, validated_data):
+        print(self.context)
         user = self.context.get('request').user
         timesober = TimeSober.objects.create(
                         user=user,

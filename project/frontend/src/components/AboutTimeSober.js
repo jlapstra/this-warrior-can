@@ -13,7 +13,7 @@ class AboutTimeSober extends Component {
           <Card.Text>
             Create a habit and start your streak! Once created, you will be able to reset and see results of previous streaks.
           </Card.Text>
-          <Button>Track my Habit</Button>
+          <Button href="#/timesober">Track my Habit</Button>
         </Card.Body>
       </Card>
     );

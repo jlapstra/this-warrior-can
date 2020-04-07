@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, NavLink, HashRouter } from 'react-router-dom';
 import ReactDOM from "react-dom";
 import UserDashboard from './UserDashboard';
+import CreateTimeSober from './CreateTimeSober';
 import Img from 'react-image';
 import './App.css'
 import img from './ThisWarriorCan.png';
@@ -40,6 +41,7 @@ class MainApp extends Component {
             <Route exact path="/" component={UserDashboard}/>
             <Route path="/dashboard" component={UserDashboard}/>
             <Route path="/about" component={UserDashboard}/>
+            <Route path="/timesober" component={CreateTimeSober}/>
           </div>
         </div>
       </HashRouter>
