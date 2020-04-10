@@ -5,4 +5,5 @@ urlpatterns = [
         path('api/dashboard/', views.UserViewEndpoint.as_view()),
         path('api/timesober/', views.TimeSoberEndpoint.as_view()),
         path('api/createuser/', views.CreateUserEndpoint.as_view()),
+        path('api/deletetimesober/<int:pk>/', views.DeleteTimeSoberEndpoint.as_view()),
 ]

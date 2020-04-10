@@ -40,7 +40,7 @@ class TimeSoberSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TimeSober
-        fields = ['title', 'sober_date', 'time_sober']
+        fields = ['title', 'sober_date', 'time_sober', 'id']
 
     def get_time_sober(self, obj):
         if isinstance(obj, TimeSober):
